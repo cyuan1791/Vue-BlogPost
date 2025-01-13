@@ -27,9 +27,10 @@ export const usePostStore = defineStore('postStore', {
     getPost(id) {
       this.post = null
       this.loading = true
+      //title.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '')
       for (var d in this.posts) {
         console.log(this.posts[d])
-        if (this.posts[d]['no'] == id ) {
+        if (this.posts[d]['Title'].replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '') == id ) {
           this.post = this.posts[d]
           this.loading = false
           break
