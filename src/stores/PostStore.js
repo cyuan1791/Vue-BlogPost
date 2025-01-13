@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const usePostStore = defineStore('postStore', {
   state: () => ({
-    posts: [],
+    posts: JSON.parse(atob(window.asoneData)),
     post: null,
     loading: false,
     error: null,
@@ -21,36 +21,19 @@ export const usePostStore = defineStore('postStore', {
     },
   },
   actions: {
-    async getPosts() {
-      this.posts = []
-      this.loading = true
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-        if (!response.ok) {
-          throw new Error("Failed to fetch posts")
-        }
-        const data = await response.json()
-        this.posts = data
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
+    getPosts() {
+      //
     },
-    async getPost(id) {
+    getPost(id) {
       this.post = null
       this.loading = true
-      try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        if (!response.ok) {
-          throw new Error("Failed to fetch post")
+      for (var d in this.posts) {
+        console.log(this.posts[d])
+        if (this.posts[d]['no'] == id ) {
+          this.post = this.posts[d]
+          this.loading = false
+          break
         }
-        const data = await response.json()
-        this.post = data
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
       }
     },
     async addPost(post) {

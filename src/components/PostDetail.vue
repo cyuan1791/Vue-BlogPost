@@ -2,7 +2,7 @@
   <div>
     <div v-if="PostStore.loading">Loading posts ...</div>
     <div v-if="PostStore.post">
-      <Post :post="PostStore.post" :author="AuthorStore.getPostAuthor" />
+      <Post :post="PostStore.post"  />
     </div>
   </div>
 </template>

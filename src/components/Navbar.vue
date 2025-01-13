@@ -58,8 +58,14 @@
 
 <script>
 import { ref } from 'vue';
+let title = 'dfja fadf gjj 3# !';
+console.log(title.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, ''));
+// @ts-ignore
+let data = JSON.parse(atob(window.asoneData));
+console.log(data);
 export default {
   setup() {
+ 
     let showMenu = ref(false);
     const toggleNav = () => (showMenu.value = !showMenu.value);
     return { showMenu, toggleNav };
