@@ -8,4 +8,4 @@ const app = createApp(App).use(createPinia())
 
 app.use(router)
 
-app.mount('#app')
+app.mount('#'+window.asoneId)

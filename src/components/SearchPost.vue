@@ -1,20 +1,21 @@
 <template>
-  <div class="w-full max-w-md my-5 mx-auto">
+  <div class="d-flex justify-content-center">
     <div class="flex items-center">
       <input type="text" v-model="searchQuery" placeholder="Search Post …" @input="searchPosts"
         class="p-2 m-2 border-2 border-gray-300 rounded-lg w-96" />
-      <i class="material-icons m-2 text-gray-500 text-4xl">search</i>
     </div>
   </div>
   <div class="mx-auto">
+    <ul class="list-unstyled">
     <li v-for="(post, index) in filteredPosts" :key="index"
-      class="block p-6 bg-gray-100 border shadow-slate-400 shadow-xl rounded-lg hover:bg-gray-200 my-8 mx-10">
-      <h6 class="mb-2 text-xl tracking-tight text-gray-700">
-        <router-link :to="`/post/${post.id}`">
-          {{ post.title }}
+      class="p-2">
+      <h6 >
+        <router-link :to="`/post/${post.Title.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '')}`">
+          {{ post.Title }}
         </router-link>
       </h6>
     </li>
+    </ul>
   </div>
 </template>
 
@@ -31,7 +32,7 @@ export default {
     const filteredPosts = computed(() => {
       if (searchQuery.value) {
         return postStore.filteredList.filter(post =>
-          post.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+          post.Title.toLowerCase().includes(searchQuery.value.toLowerCase())
         );
       } else {
         return [];
@@ -51,4 +52,3 @@ export default {
   }
 };
 </script>
-

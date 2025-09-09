@@ -1,14 +1,25 @@
 <template>
-  <div v-for="post in PostStore.posts" :key="post.no"
-    class="block p-6 bg-gray-100 border shadow-slate-400 shadow-xl rounded-lg hover:bg-gray-200 my-8 mx-10">
-    <h6 class="mb-2 text-2xl font-bold tracking-tight text-sky-700">
-      <router-link :to="`/post/${post.Title.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '')}`">
+<div class="px-4">
+<ul class="list-unstyled">
+  <li v-for="post in PostStore.posts" :key="post.id"
+    class="media">
+    <img :src="post.SmallImg" class="p-2" alt="...">
+    <div class="media-body p-2">
+
+    <h5> {{ post.Date }}</h5>
+    <h5 class="mt-0">
         {{ post.Title }}
+    </h5>
+    <p v-html="post.Summary"> </p>
+    <h5 class="mt-0">
+      <router-link :to="`/post/${post.Title.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '')}`">
+        Read More
       </router-link>
-    </h6>
-    <p class="font-normal text-gray-700 ">
-      {{ post.body }}
-    </p>
+    </h5>
+    </div>
+    </li>
+
+  </ul>
   </div>
 </template>
 
